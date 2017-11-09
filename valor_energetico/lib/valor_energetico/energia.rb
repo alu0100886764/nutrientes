@@ -62,3 +62,34 @@ class Energia
    
 end
 
+class Grupo_alimentos < Energia
+
+    attr_accessor :producto, :pr
+    
+    
+    
+    def initialize(a,b,c,d,e)
+        super(a,b,c,d)
+        @nombre_grupo = e
+    end
+    
+   
+    
+    def add(a,b,c,d)
+        @pr =Node.new(super(a,b,c,d))
+        @producto = @producto.insert_single(pr)
+        
+    end
+    
+      
+    def to_s
+    
+        out = super
+        out << " "
+        out << "#{@group}"
+        out
+    end
+    
+end
+
+
