@@ -1,7 +1,6 @@
-#encoding: UTF-8
 require 'spec_helper'
-require 'lib/valor_energetico/energia'
-require 'lib/valor_energetico/lista'
+require './lib/valor_energetico/energia'
+require './lib/valor_energetico/lista'
 
 
 describe Energia do 
@@ -43,7 +42,7 @@ describe Energia do
           end
           
           it "la jerarquia de un objeto" do
-            expect(@Huevo_frito.kind_of? Energia).to eq(true)
+            expect(@Huevo_frito.class).to eq(Grupo_alimentos)
           end
           
     end
@@ -54,6 +53,9 @@ describe Energia do
     before :each do
       @list = Lista.new()
       @huevo_f = Energia.new("Huevo Frito", 14.1, 0.0, 19.5)
+      @lech_vaca = Energia.new("Leche de vaca",3.3, 4.8, 3.2)
+      @lenteja = Energia.new("Lentejas", 23.5, 52.0, 1.4)
+      
     end
     
     it "Existe una lista con su cabeza y con su cola" do
@@ -73,12 +75,20 @@ describe Energia do
     end
     
     it "Se extrae el primer elemento de la lista" do
-      #expect(@list1.extract_beg()).to eq(@node3)
+      @list.insert_single(@huevo_f)
+      expect(@list.extract_beg()).to eq("\t\t   Proteínas\tGlúcidos\tLípidos\nHuevo Frito\t\t14.1\t\t0.0\t\t19.5\n")
     end
     
-    it "Se pueden insertar varios elementos" do
-      #@list1.insert_multiple(@conj_nodos)
-      #expect(@list1.inicio).to eq(@conj_nodos[2])
+    it "Se insertan varios elementos" do
+      valor = [@huevo_f,@lech_vaca,@lenteja]
+      valor.each do |i|
+      	@list.insert_single("#{i}")
+    	end
+      expect(@list.size).to eq(3)
+      expect(@list.extract_end()).to eq("\t\t   Proteínas\tGlúcidos\tLípidos\nHuevo Frito\t\t14.1\t\t0.0\t\t19.5\n")
+      expect(@list.extract_beg()).to eq("\t\t   Proteínas\tGlúcidos\tLípidos\nLentejas\t\t23.5\t\t52.0\t\t1.4\n")
+      expect(@list.size).to eq(1)
+      expect(@list.extract_end()).to eq("\t\t   Proteínas\tGlúcidos\tLípidos\nLeche de vaca\t\t3.3\t\t4.8\t\t3.2\n")
     end
 
   end
