@@ -48,3 +48,37 @@ describe Energia do
           
     end
   end
+  
+  describe Lista do
+            
+    before :each do
+      @list = Lista.new()
+      @huevo_f = Energia.new("Huevo Frito", 14.1, 0.0, 19.5)
+    end
+    
+    it "Existe una lista con su cabeza y con su cola" do
+      expect(@list.inicio.value).to eq(nil)
+      expect(@list.final.value).to eq(nil)
+    end
+    
+    it "Comprobamos que la lista está vacía" do
+      expect(@list.size).to eq(0)
+    end
+  
+    it "Se puede insertar un elemento en la lista" do
+      @list.insert_single(@huevo_f)
+      expect(@list.inicio.value).to eq(@huevo_f) 
+      expect(@list.size).to eq(1)
+      
+    end
+    
+    it "Se extrae el primer elemento de la lista" do
+      #expect(@list1.extract_beg()).to eq(@node3)
+    end
+    
+    it "Se pueden insertar varios elementos" do
+      #@list1.insert_multiple(@conj_nodos)
+      #expect(@list1.inicio).to eq(@conj_nodos[2])
+    end
+
+  end
