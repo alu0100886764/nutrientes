@@ -123,7 +123,7 @@ describe Lista do
     
   end
   
-  describe "Probando enumerable" do
+  describe "Probando Enumerable" do
        
      it "Maximo" do
        @list3.insert_single(1)
@@ -131,12 +131,7 @@ describe Lista do
        @list3.insert_single(3)
       expect(@list3.max).to eq(3)
      end
-     it "Minimo" do
-       @list3.insert_single(1)
-       @list3.insert_single(2)
-       @list3.insert_single(3)
-       expect(@list3.min).to eq(1)
-     end
+     
      it "Ordenar" do
        @list3.insert_single(1)
        @list3.insert_single(3)
@@ -151,6 +146,16 @@ describe Lista do
        @list3.insert_single(2)
        expect(@list3.detect{ |i| i.between?(1,2)}).to eq(1)
      end
+     
+     it "Minimo" do
+       @list3.insert_single(1)
+       @list3.insert_single(2)
+       @list3.insert_single(3)
+       expect(@list3.min).to eq(1)
+     end
+     
+     
+     
    end
 end
 
@@ -204,11 +209,17 @@ describe Grupo_alimentos do
           
     end
     
-    describe "Comparable" do 
+    describe "Probando Comparable" do 
            
-      it "Igualdad entre menús" do
+      it "menor" do
           expect(@Huevo_frito < (@Leche_vaca)).to eq(false)
+      end
+      
+      it "Igualdad" do
           expect(@Huevo_frito == (@Leche_vaca)).to eq(false)
+      end
+      
+      it "mayor" do
           expect(@Huevo_frito > (@Leche_vaca)).to eq(true)
       end
       

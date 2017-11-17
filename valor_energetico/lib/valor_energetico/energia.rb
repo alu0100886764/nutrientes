@@ -3,7 +3,7 @@ class Energia
     
     attr_accessor :alimento, :proteinas, :glucidos, :lipidos, :valor_ener
     
-include Comparable
+    include Comparable
  
     #Nos permite comparar objetos de Energia
     def <=>(other) 

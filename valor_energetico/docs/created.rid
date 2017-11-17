@@ -1,0 +1,18 @@
+Thu, 16 Nov 2017 21:34:41 +0000
+./lib/valor_energetico/energia.rb	Thu, 16 Nov 2017 21:24:26 +0000
+./lib/valor_energetico/lista.rb	Thu, 16 Nov 2017 21:26:14 +0000
+./lib/valor_energetico/version.rb	Thu, 16 Nov 2017 21:22:47 +0000
+./lib/valor_energetico.rb	Thu, 16 Nov 2017 21:22:47 +0000
+./spec/spec_helper.rb	Thu, 16 Nov 2017 21:22:47 +0000
+./spec/v_ener_spec.rb	Thu, 16 Nov 2017 21:32:44 +0000
+./Rakefile	Thu, 16 Nov 2017 21:22:47 +0000
+./CODE_OF_CONDUCT.md	Thu, 16 Nov 2017 21:22:47 +0000
+./Guardfile	Thu, 16 Nov 2017 21:22:47 +0000
+./README.md	Thu, 16 Nov 2017 21:22:47 +0000
+./Gemfile.lock	Thu, 16 Nov 2017 21:23:07 +0000
+./valor_energetico.gemspec	Thu, 16 Nov 2017 21:22:47 +0000
+./LICENSE.txt	Thu, 16 Nov 2017 21:22:47 +0000
+./bin/setup	Thu, 16 Nov 2017 21:22:47 +0000
+./bin/spec/spec_helper.rb	Thu, 16 Nov 2017 21:22:47 +0000
+./bin/console	Thu, 16 Nov 2017 21:22:47 +0000
+./Gemfile	Thu, 16 Nov 2017 21:22:47 +0000
