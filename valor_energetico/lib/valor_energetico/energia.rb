@@ -43,35 +43,46 @@ class Energia
        indice =[],[]
        al = []
        gl = []
+       
+       #rellenamos el array 'indice' con valores del 0 al 24
        alimento.each_with_index do |val, index|
            alimento[index].each_with_index{|val,index2| indice[index] << index2 }
        end
        
-       indice.each_with_index do |valor,i| #quitamos el valor 0 del indice.
+       #quitamos el valor 0 del indice.
+       indice.each_with_index do |valor,i|
          indice[i] = valor.select{|val| val > 0}
        end
-        
+       
        al = [],[]
        gl = [],[]
        alsum = [],[]
        glsum = [],[]
-       r = [],[]
-       s = [],[]
+       zipalgl = [],[]
+       resultado = [],[]
        
+       #almacenamos en al y en gl los valores que da la formula, tanto para el alimento como para la glucosa
        indice.each_with_index do |val, index|
          val.collect do |index2|
             al[index] << ((alimento[index][index2] - alimento[index][0]) + (alimento[index][index2-1] - alimento[index][0]))*2.5
             gl[index] << ((glucosa[index][index2] - glucosa[index][0]) + (glucosa[index][index2-1] - glucosa[index][0]))*2.5
         end
+        #almacenamos en alsum y en glsum dos valores en cada uno, la suma de todos los valores del ind1 
+        #y la suma de todos los valores del ind2
             alsum[index] = al[index].reduce(:+)
             glsum[index] = gl[index].reduce(:+)
-        
        end
        
-       r = alsum.zip(glsum)
+       #juntamos el valor 1 del alsum con el valor 1 de glsum y el 2 con el 2
+       zipalgl = alsum.zip(glsum)
+    
+       #divide el valor del alimento del ind1 entre el valor de la glucosa del ind1 y lo multiplica por 100
+       #y lo mismo para el ind2
+       alsum.each_with_index{|val,index| resultado[index] = zipalgl[index].reduce(:/)*100}
        
-       alsum.each_with_index{|val,index| s[index] = r[index].reduce(:/)*100}
-       @indice_glucemico = s.reduce(:+)/2
+       #hacemos la media de los dos individuos sumando los valores de cada individuo y dividiendo
+       #entre 2
+       @indice_glucemico = resultado.reduce(:+)/2
         
     end
     
