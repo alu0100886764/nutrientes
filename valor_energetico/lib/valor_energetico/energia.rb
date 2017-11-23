@@ -16,12 +16,6 @@ class Energia
         @alimento, @proteinas, @glucidos, @lipidos, @valor_ener = a, b, c, d, []
     end
     
-    
-    
-    def add(a,b,c,d)
-        initialize(a,b,c,d)
-    end
-    
     def to_s
 
         out = "\t\t   Proteínas\tGlúcidos\tLípidos\n"
@@ -44,7 +38,46 @@ class Energia
 
     end
     
+    def indice_glucemico(alimento, glucosa)
+       
+       indice =[],[]
+       al = []
+       gl = []
+       alimento.each_with_index do |val, index|
+           alimento[index].each_with_index{|val,index2| indice[index] << index2 }
+       end
+       
+       indice.each_with_index do |valor,i| #quitamos el valor 0 del indice.
+         indice[i] = valor.select{|val| val > 0}
+       end
+        
+       al = [],[]
+       gl = [],[]
+       alsum = [],[]
+       glsum = [],[]
+       r = [],[]
+       s = [],[]
+       
+       indice.each_with_index do |val, index|
+         val.collect do |index2|
+            al[index] << ((alimento[index][index2] - alimento[index][0]) + (alimento[index][index2-1] - alimento[index][0]))*2.5
+            gl[index] << ((glucosa[index][index2] - glucosa[index][0]) + (glucosa[index][index2-1] - glucosa[index][0]))*2.5
+        end
+            alsum[index] = al[index].reduce(:+)
+            glsum[index] = gl[index].reduce(:+)
+        
+       end
+       
+       r = alsum.zip(glsum)
+       
+       alsum.each_with_index{|val,index| s[index] = r[index].reduce(:/)*100}
+       @indice_glucemico = s.reduce(:+)/2
+        
+    end
+    
 end
+
+
 
 #Clase hija de Energia, contiene un objeto Energia y el nombre de un grupo de alimentos
 class Grupo_alimentos < Energia
