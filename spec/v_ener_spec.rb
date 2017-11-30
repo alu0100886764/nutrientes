@@ -1,5 +1,6 @@
 #encoding: UTF-8
 require 'spec_helper'
+require "benchmark"
 require './lib/valor_energetico/energia'
 require './lib/valor_energetico/lista'
 
@@ -26,6 +27,8 @@ describe Energia do
     @Manzana     = Energia.new("Manzana", 0.3, 12.4, 0.4)
     @Platanos    = Energia.new("Plátanos", 1.2, 21.4, 0.2)
     
+    
+        
   end
     describe "expectativas" do
          
@@ -231,4 +234,25 @@ describe Grupo_alimentos do
       end
       
     end
+    
+    context "Usando Benchmark" do
+      it "Comprobando los métodos de ordenación" do
+        #array_alimentos = [@Huevo_frito, @Leche_vaca, @Yogurt]
+        #array_num = [3,4,2,1]
+        #expect(array_alimentos.method_for).to eq([@Leche_vaca, @Yogurt, @Huevo_frito])
+        #expect(array_num.method_for).to eq([1,2,3,4])
+        #expect(array_alimentos.method_each).to eq([@Leche_vaca, @Yogurt, @Huevo_frito])
+        #expect(array_alimentos.sort).to eq([@Leche_vaca, @Yogurt, @Huevo_frito])
+        array_completo=[@Huevo_frito, @Leche_vaca, @Yogurt, @Cerdo, @Ternera, @Pollo, @Bacalao, @Atun, @Salmon, @Aceite_oliva, @Mantequilla, @Chocolate, @Azucar, @Arroz, @Lentejas, @Papas, @Tomate, @Cebolla, @Calabaza, @Manzana, @Platanos, @Pera]
+        n = 50000
+        Benchmark.bm(1) do |x|
+          x.report("Método for")   { array_completo.method_for}
+          x.report("Método each")  { array_completo.method_each }
+          x.report("Método sort")  { array_completo.sort}
+        end
+      end
+      end
   end
+  
+      
+  

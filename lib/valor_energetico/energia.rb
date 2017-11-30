@@ -7,13 +7,17 @@ class Energia
  
     #Nos permite comparar objetos de Energia
     def <=>(other) 
-        @proteinas <=> other.proteinas
+        return nil unless other.kind_of? Energia
+        #get_valor_energetico <=> other.get_valor_energetico
+        @valor_ener <=> other.valor_ener
     end
 
     
     def initialize(a,b,c,d)
        
-        @alimento, @proteinas, @glucidos, @lipidos, @valor_ener = a, b, c, d, []
+        @alimento, @proteinas, @glucidos, @lipidos = a, b, c, d
+        @valor_ener = get_valor_energetico
+        
     end
     
     def to_s
@@ -46,7 +50,7 @@ class Energia
        
        #rellenamos el array 'indice' con valores del 0 al 24
        alimento.each_with_index do |val, index|
-           alimento[index].each_with_index{|val,index2| indice[index] << index2 }
+           alimento[index].each_with_index{|val2,index2| indice[index] << index2 }
        end
        
        #quitamos el valor 0 del indice.
@@ -106,3 +110,46 @@ class Grupo_alimentos < Energia
     
 end
 
+class Array
+   
+    def method_for
+        limit = (self.length-1)
+        while limit > 0
+            for i in 0..limit-1
+                if self[i] > self[i+1]
+                    self[i],self[i+1] = self[i+1],self[i]
+                end
+            end
+            limit -= 1
+        end
+        #self
+        
+    end
+      
+      def method_each
+        change = 0
+        while change == 0
+          a = nil
+          self.each do |item|
+            if(a == nil)
+              a = item
+            elsif (a > item)
+              self.delete(a)
+              self << a
+              a = item
+              change = 1
+            else
+              a = item
+            end
+          end
+          if(change == 1)
+            change = 0
+          else
+            break
+          end
+          
+        end
+        #self
+        
+      end
+end
