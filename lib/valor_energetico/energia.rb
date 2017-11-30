@@ -5,7 +5,7 @@ class Energia
     
     include Comparable
  
-    #Nos permite comparar objetos de Energia
+    #Nos permite comparar objetos de la clase Energia
     def <=>(other) 
         return nil unless other.kind_of? Energia
         #get_valor_energetico <=> other.get_valor_energetico
